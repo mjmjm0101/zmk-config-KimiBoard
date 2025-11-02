@@ -1,16 +1,20 @@
-name: Build KimiBoard firmware
-on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
-  workflow_dispatch:
+name: Build KimiBoard Firmware
+on: [push, pull_request]
 
 jobs:
   build:
-    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
-    with:
-      board: seeeduino_xiao_ble
-      shield: kimi
-      snippet: studio-rpc-usb-uart
-      cmake-args: -DCONFIG_ZMK_STUDIO=y -DCONFIG_ZMK_STUDIO_LOCKING=n
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v2
+
+      - name: Build firmware
+        run: |
+          docker exec -w /workspaces/zmk/app -it loving_hertz \
+          west build -b seeeduino_xiao_ble \
+          -- -DSHIELD=kimiboard \
+             -DZMK_CONFIG="/workspaces/zmk-config/config" \
+             -DZMK_EXTRA_MODULES="/workspaces/zmk-modules/zmk-pmw3610-driver"
