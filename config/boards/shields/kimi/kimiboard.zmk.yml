@@ -1,9 +1,8 @@
 file_format: "1"
 id: kimi
-name: kimiboard_plus
+name: kimiboard
 type: shield
 url:
 requires: [seeeduino_xiao_ble]
 features:
   - keys
-
