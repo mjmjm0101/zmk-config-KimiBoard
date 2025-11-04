@@ -11,16 +11,14 @@
         display-name = "Default Layout";
         kscan = <&kscan0>;
         transform = <&default_transform>;
-	keys = 
-		  // w  h   x   y   rot rx ry
-			  <&key_physical_attrs 100 100   0   0   0  0  0>   // SW1
-			, <&key_physical_attrs 100 100 120   0   0  0  0>   // SW2
-			, <&key_physical_attrs 100 100 240   0   0  0  0>   // SW3
-			, <&key_physical_attrs 100 100   0 120   0  0  0>   // SW4
-			, <&key_physical_attrs 100 100 120 120   0  0  0>   // SW5
-			, <&key_physical_attrs 100 100 240 120   0  0  0>   // SW6
-			, <&key_physical_attrs 100 100 120 240   0  0  0>   // SW7
-			;
+
+    keys = 
+            // w  h   x   y   rot rx ry
+             <&key_physical_attrs  50  100   0  0  0  0  0>   // SW1(リセット用ボタン)
+            , <&key_physical_attrs 100 100 120  0  0  0  0>   // SW2(左ボタン)
+            , <&key_physical_attrs 100 100 240  0  0  0  0>   // SW3(中央ボタン)
+            , <&key_physical_attrs 100 100 360  0  0  0  0>   // SW4(右ボタン)
+            ;
     };
 
     default_transform: keymap_transform0 {
@@ -28,8 +26,7 @@
         rows = <4>;
         columns = <5>;
         map = <
-        RC(0,0) RC(1,1) RC(2,2) RC(3,3)    // SW1〜SW4
-        RC(0,4) RC(1,4) RC(2,4)            // SW5〜SW7 
+        RC(3,3) RC(2,2) RC(1,1) RC(0,0)    // SW4〜SW1(4はリセット用スイッチ)
         >;
     };
 
