@@ -6,8 +6,8 @@
 #include <behaviors/rgbled_widget.dtsi>
 
 &trackball {
-    // automouse-layer = <2>;
-    scroll-layers = <1>;
+    automouse-layer = <2>;
+    scroll-layers = <3>;
 
     // arrows {
     //     layers = <3>;
@@ -53,9 +53,21 @@
         default_layer {
             bindings = <
                 // row0左から右へ（一番左のキーはリセットボタン）
-                &bt BT_CLR  &mkp MB3  &mkp LCLK  &mkp RCLK
+                &bt BT_CLR  &kp BACKSPACE  &kp SPACE  &kp ENTER
             >;
 	};
+
+    mouse_key_layer {
+            bindings = <
+                &trans  &mkp MB3  &mkp LCLK  &mkp RCLK
+        >;
+    };
+
+    auto_mouse_layer {
+            bindings = <
+                &trans  &mkp MB3  &mkp LCLK  &mkp RCLK
+        >;
+    };
 
     scroll_layer {
             bindings = <
@@ -73,11 +85,29 @@
         // Key1 + 2 = (□ - ■ ■ □)
 			// スクロールレイヤー
 
-        combo_layer1 {
-            bindings = <&mo 1>;
+        combo_layer1 {1
+            bindings = <&mo 3>;
             key-positions = <1 2>;
             timeout-ms = <50>;
         };
+        
+        // Key2 + 3 = (□ - □ ■ ■)
+			// 1番レイヤーをトグル
+
+        combo_layer2 {
+            bindings = <&tog 1>;
+            key-positions = <2 3>;
+            timeout-ms = <50>;
+        };
+        // Key1 + 2 + 3 = (□ -  ■ ■ ■)
+			// BT設定を全て消去
+
+        combo_layer3 {
+            bindings = <&bt BT_CLR>;
+            key-positions = <1 2 3>;
+            timeout-ms = <50>;
+        };
+
 
     };
 
