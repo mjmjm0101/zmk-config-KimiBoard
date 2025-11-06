@@ -81,7 +81,8 @@
     combos {
         compatible = "zmk,combos";
 
-        // Key1 + 2 =      // スクロールレイヤー
+        // Key1 + 2 = (□ - ■ ■ □)
+			// スクロールレイヤー
 
         combo_layer1 {
             bindings = <&mo 3>;
@@ -89,18 +90,19 @@
             timeout-ms = <50>;
         };
         
-        // Key2 + 3 =
+        // Key2 + 3 = (□ - □ ■ ■)
+			// 1番レイヤーをトグル
 
         combo_layer2 {
-            bindings = <&tog 1>;      // 1番レイヤーをトグル
+            bindings = <&tog 1>;
             key-positions = <2 3>;
             timeout-ms = <50>;
         };
-            // Key2 + 3 =
-
+        // Key1 + 2 + 3 = (□ -  ■ ■ ■)
+			// BT設定を全て消去
 
         combo_layer3 {
-            bindings = <&bt BT_CLR>;      // BT設定を全て消去
+            bindings = <&bt BT_CLR>;
             key-positions = <1 2 3>;
             timeout-ms = <50>;
         };
