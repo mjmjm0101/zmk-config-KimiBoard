@@ -5,7 +5,7 @@ manifest:
     - name: sirocominfo
       url-base: https://github.com/sirocominfo
     - name: caksorlar
-      url-base: https://github.com/caksorlar
+      url-base: https://github.com/caksoylar
   projects:
     - name: zmk
       remote: zmkfirmware
@@ -15,7 +15,7 @@ manifest:
       remote: sirocominfo
       revision: main
     -name: zmk-rgbled-widget
-      remote: caksorlar
+      remote: caksoylar
       revision: main
   self:
     path: config
