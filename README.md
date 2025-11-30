@@ -8,7 +8,7 @@
 
 ## 1.デフォルトファームウェアについて 
 >[!NOTE]
->**・Windowsではalt-ime-ahk、MacではKarabiner-Elementsを使用し、左右のAltキーで日本語・英語入力切り替えを行う前提でキーを割り当てています。**
+>**・Windowsではalt-ime-ahk、MacではKarabiner-Elementsを使用し、左右のAltキーで日本語・英語入力の切り替えを行う前提でキーを割り当てています。**
 
 ### 1-1.キーマップ  
 
