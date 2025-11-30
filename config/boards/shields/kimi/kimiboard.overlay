@@ -13,11 +13,11 @@
         transform = <&default_transform>;
 
     keys = 
-            // w  h   x   y   rot rx ry
-             <&key_physical_attrs  50  100   0  0  0  0  0>   // SW1(リセット用ボタン)
-            , <&key_physical_attrs 100 100 120  0  0  0  0>   // SW2(左ボタン)
-            , <&key_physical_attrs 100 100 240  0  0  0  0>   // SW3(中央ボタン)
-            , <&key_physical_attrs 100 100 360  0  0  0  0>   // SW4(右ボタン)
+            //                     w    h    x     y   rot rx  ry
+             <&key_physical_attrs  50   100    0   0   0   0   0>   // SW1(リセット用ボタン)
+            , <&key_physical_attrs 100  100  120   0   0   0   0>   // SW2(左ボタン)
+            , <&key_physical_attrs 100  100  240   0   0   0   0>   // SW3(中央ボタン)
+            , <&key_physical_attrs 100  100  360   0   0   0   0>   // SW4(右ボタン)
             ;
     };
 
