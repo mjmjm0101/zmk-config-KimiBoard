@@ -91,7 +91,6 @@
         compatible = "zmk,input-listener";
         status = "disabled";
     };
-};
 
 &spi0 {
     status = "disabled";
