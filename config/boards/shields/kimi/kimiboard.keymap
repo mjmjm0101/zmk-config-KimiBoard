@@ -51,11 +51,15 @@
         // Key1 + 2 = (□ - ■ ■ □)
 			// スクロールレイヤー
 
-        combo_layer1 {
-            bindings = <&mo 3>;
-            key-positions = <1 2>;
-            timeout-ms = <50>;
+        behaviors {
+        left_alt_tap: left_alt_tap {
+            compatible = "zmk,behavior-tap-hold";
+            tapping-term-ms = <200>;       // タップとホールドの判定時間
+            hold-trigger-keys = <1>;       // ホールド対象キー
+            bindings = <&kp LALT>;         // タップ時に左Alt
+            hold-bindings = <&mo 3>;       // ホールド（押している間）で layer 3
         };
+    };
         
         // Key2 + 3 = (□ - □ ■ ■)
 			// 1番レイヤーをトグル(マウス操作限定レイヤー)
