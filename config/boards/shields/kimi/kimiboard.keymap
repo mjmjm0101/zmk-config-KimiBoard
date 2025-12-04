@@ -47,9 +47,6 @@
 
     combos {
         compatible = "zmk,combos";
-
-        // Key1 + 2 = (□ - ■ ■ □)
-			// スクロールレイヤー + 同時押し後すぐ離すとすると左alt
         
         // Key2 + 3 = (□ - □ ■ ■)
 			// 右Alt
@@ -59,6 +56,7 @@
             key-positions = <2 3>;
             timeout-ms = <50>;
         };
+
         // Key1 + 2 + 3 = (□ -  ■ ■ ■)
 			// 現在の接続先のBT接続情報を消去
 
