@@ -91,14 +91,6 @@
         compatible = "zmk,input-listener";
         status = "disabled";
     };
-
-&spi0 {
-    status = "disabled";
-
-    trackball: trackball@0 {
-        status = "disabled";
-        reg = <0>;
-    };
 };
 
     trackball: trackball@0 {
