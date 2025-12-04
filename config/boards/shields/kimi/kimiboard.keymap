@@ -51,12 +51,6 @@
         // Key2 + 3 = (□ - □ ■ ■)
 			// 右Alt
 
-        combo_layer2 {
-            bindings = <&kp LALT>;
-            key-positions = <2 3>;
-            timeout-ms = <50>;
-        };
-
         // Key1 + 2 + 3 = (□ -  ■ ■ ■)
 			// 現在の接続先のBT接続情報を消去
 
