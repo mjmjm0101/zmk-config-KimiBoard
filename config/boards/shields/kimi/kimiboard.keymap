@@ -10,28 +10,7 @@
     scroll-layers = <3>;
 };
 
-/ {
-    behaviors {
-        // カーソルの検出
 
-        mouse_mv: mouse_cursor_move {
-            compatible = "zmk,behavior-sensor-rotate-var";
-            #sensor-binding-cells = <2>;
-            bindings = <&mmv>, <&mmv>;
-            tap-ms = <10>;
-        };
-
-        // ホイールの検出
-
-        mouse_scrl: mouse_wheel_scrl {
-            compatible = "zmk,behavior-sensor-rotate-var";
-            #sensor-binding-cells = <2>;
-            bindings = <&msc>, <&msc>;
-            tap-ms = <10>;
-        };
-
-        };
-    };
 
 / {
     keymap {
