@@ -49,15 +49,28 @@
         compatible = "zmk,combos";
 
         // Key1 + 2 = (□ - ■ ■ □)
-			// スクロールレイヤー
-
-        left_alt_tap: left_alt_tap {
+			// スクロールレイヤー + 同時押し後すぐ離すとすると左alt
+    behaviors {
+        // 単体タップで左Alt、ホールドで layer3（スクロールレイヤー）
+        left_alt_layer3: left_alt_layer3 {
             compatible = "zmk,behavior-tap-hold";
-            tapping-term-ms = <200>;       // タップとホールドの判定時間
-            hold-trigger-keys = <1>;       // ホールド対象キー
-            bindings = <&kp LALT>;         // タップ時に左Alt
-            hold-bindings = <&mo 3>;       // ホールド（押している間）で layer 3
+            tapping-term-ms = <200>;        // タップ判定時間
+            hold-trigger-keys = <1 2>;      // ホールド判定するキー
+            bindings = <&kp LALT>;          // タップ時に左Alt
+            hold-bindings = <&mo 3>;        // ホールド時に layer3
         };
+    };
+
+    combos {
+        compatible = "zmk,combo";
+
+        // 1 + 2 を同時押しした場合、layer3（スクロールレイヤー）に入る
+        scroll_layer_combo {
+            key-positions = <1 2>;          // 対象キーの物理インデックス
+            timeout-ms = <50>;              // 同時押し認識のタイムアウト
+            bindings = <&mo 3>;             // 押している間だけ layer3 に入る
+        };
+    };
         
         // Key2 + 3 = (□ - □ ■ ■)
 			// 1番レイヤーをトグル(マウス操作限定レイヤー)
