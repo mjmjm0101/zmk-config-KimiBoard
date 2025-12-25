@@ -12,7 +12,7 @@ https://github.com/user-attachments/assets/015fe02f-a209-49c6-a82b-a60509d75910
 
 ## 1.デフォルトファームウェアについて 
 >[!NOTE]
->**・Windowsではalt-ime-ahk、MacではKarabiner-Elementsを使用し、左右のAltキーで日本語・英語入力の切り替えを行う前提でキーを割り当てています。**
+>**・Windows上の言語設定の1と2を直接指定し、日本語・英語入力の切り替えを行う形でキーを割り当てています。**
 
 ### 1-1.キーマップ  
 
