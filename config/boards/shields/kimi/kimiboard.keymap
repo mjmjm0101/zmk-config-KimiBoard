@@ -49,19 +49,20 @@
         compatible = "zmk,combos";
 
         // Key1 + 2 = (□ - ■ ■ □)
-			// スクロールレイヤー
+            // タップでLANGUAGE_2へ切り替え
+			// ホールドでスクロールレイヤー
 
         combo_layer1 {
-            bindings = <&mo 3>;
+            bindings = <&lt 3 LANGUAGE_2>;
             key-positions = <1 2>;
             timeout-ms = <50>;
         };
         
         // Key2 + 3 = (□ - □ ■ ■)
-			// 1番レイヤーをトグル(マウス操作限定レイヤー)
+			// タップでLANGUAGE_1へ切り替え
 
         combo_layer2 {
-            bindings = <&tog 1>;
+            bindings = <&kp LANGUAGE_1>;
             key-positions = <2 3>;
             timeout-ms = <50>;
         };
@@ -75,10 +76,10 @@
         };
 
         // Key1 + 3 = (□ -  ■ □ ■)
-			// BT接続先をトグル
+			// 1番レイヤーをトグル(マウス操作限定レイヤー)
 
         combo_layer4 {
-            bindings = <&bt BT_NXT>;
+            bindings = <&tog 1>;
             key-positions = <1 3>;
             timeout-ms = <50>;
         };
