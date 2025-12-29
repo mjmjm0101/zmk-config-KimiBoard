@@ -6,8 +6,8 @@
 #include <behaviors/rgbled_widget.dtsi>
 
 &trackball {
-    automouse-layer = <3>;
-    scroll-layers = <4>;
+    automouse-layer = <2>;
+    scroll-layers = <3>;
 };
 
 
@@ -70,14 +70,6 @@
         combo_layer2 {
             bindings = <&kp LANGUAGE_1>;
             key-positions = <2 3>;
-            timeout-ms = <50>;
-        };
-        // Key1 + 2 + 3 = (□ -  ■ ■ ■)
-			// 2番レイヤーをトグル(キーボード操作限定レイヤー)
-
-        combo_layer3 {
-            bindings = <&tog 2>;
-            key-positions = <1 2 3>;
             timeout-ms = <50>;
         };
 
