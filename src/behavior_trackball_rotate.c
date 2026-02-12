@@ -7,6 +7,10 @@
 
 #define DT_DRV_COMPAT kimiboard_behavior_trackball_rotate
 
+#ifndef DEVICE_API
+#define DEVICE_API(_class, _name) const struct behavior_driver_api _name
+#endif
+
 struct behavior_trackball_rotate_config {
     bool clockwise;
 };
@@ -36,7 +40,7 @@ static int on_binding_released(const struct device *dev, struct zmk_behavior_bin
     return ZMK_BEHAVIOR_OPAQUE;
 }
 
-static const struct behavior_driver_api behavior_trackball_rotate_driver_api = {
+static DEVICE_API(behavior, behavior_trackball_rotate_driver_api) = {
     .binding_pressed = on_binding_pressed,
     .binding_released = on_binding_released,
 };
