@@ -36,7 +36,7 @@ static int on_binding_released(const struct device *dev, struct zmk_behavior_bin
     return ZMK_BEHAVIOR_OPAQUE;
 }
 
-static const struct behavior_driver_api behavior_trackball_rotate_driver_api = {
+static DEVICE_API(behavior, behavior_trackball_rotate_driver_api) = {
     .binding_pressed = on_binding_pressed,
     .binding_released = on_binding_released,
 };
