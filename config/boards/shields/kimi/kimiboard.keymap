@@ -49,7 +49,10 @@
         // トラックボールの検出角度を45度左に回転
 
         combo_layer1 {
-            bindings = <&kp CPI_DEC>;
+            // NOTE: `CPI_DEC` はこの環境の dt-bindings では未定義のため
+            // devicetree パースエラーになる。正しい CPI 制御キーコードが
+            // 利用可能になるまで no-op にしてビルドを通す。
+            bindings = <&none>;
             key-positions = <1 2>;
             timeout-ms = <50>;
         };
@@ -58,7 +61,8 @@
         // トラックボールの検出角度を45度右に回転
 
         combo_layer4 {
-            bindings = <&kp CPI_INC>;
+            // NOTE: `CPI_INC` も同様に未定義。
+            bindings = <&none>;
             key-positions = <1 3>;
             timeout-ms = <50>;
         };
