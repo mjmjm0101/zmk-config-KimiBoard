@@ -1,8 +1,8 @@
 /*
  * KimiBoard local pointing keycodes
  *
- * ZMK v0.3 系では dt-bindings 側に CPI_INC/CPI_DEC が存在しない環境があるため、
- * ローカルで補完定義する。
+ * 目的:
+ * - CPI増減ではなく、PCへ送るポインタ座標系の回転状態を切り替えるためのローカルキーコード。
  */
 
 #pragma once
@@ -14,13 +14,24 @@
 #endif
 
 /*
- * 0xF600-0xF6FF は ZMK の内部制御キーコード用に使うローカル拡張レンジとして利用。
- * 同一ヘッダーを参照することで、keymap と実装側で値の整合を取る。
+ * 0xF600-0xF6FF はローカル拡張キーコードとして使用。
+ */
+#ifndef TB_ROT_CW
+#define TB_ROT_CW 0xF611
+#endif
+
+#ifndef TB_ROT_CCW
+#define TB_ROT_CCW 0xF612
+#endif
+
+/*
+ * 既存キーマップ互換のため残置（非推奨）。
+ * 旧名: CPI_INC/CPI_DEC
  */
 #ifndef CPI_INC
-#define CPI_INC 0xF601
+#define CPI_INC TB_ROT_CW
 #endif
 
 #ifndef CPI_DEC
-#define CPI_DEC 0xF602
+#define CPI_DEC TB_ROT_CCW
 #endif
