@@ -1,0 +1,7 @@
+menu "KimiBoard"
+
+config KIMIBOARD_TRACKBALL_ROTATION
+    bool "Enable KimiBoard trackball rotation helpers"
+    default y
+
+endmenu
