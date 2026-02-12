@@ -22,8 +22,8 @@
 
         scroll_layer {
             bindings = <
-                // 左から: BT切り替え(&transで透過) / 透過 / 45°左回転 / 45°右回転
-                &trans      &trans      &mkp TB_ROT_CCW  &mkp TB_ROT_CW
+                // 左から: 透過 / 透過 / 45°左回転 / 45°右回転
+                &trans          &trans      &kp TB_ROT_CCW   &kp TB_ROT_CW
             >;
         };
     };
