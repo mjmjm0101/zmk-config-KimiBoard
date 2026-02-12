@@ -35,20 +35,22 @@
         compatible = "zmk,combos";
 
         // Key1 + 2 = (□ - ■ ■ □)
-        // トラックボールの検出角度を45度左に回転
+        // トラックボール座標を左に45度回転（反時計回り）
 
         combo_layer1 {
-            bindings = <&mkp CPI_DEC>;
-            key-positions = <1 2>;
+            bindings = <&mkp TB_ROT_CCW>;
+            key-positions = <2 1>;
             timeout-ms = <50>;
         };
 
-        // Key1 + 3 = (□ -  ■ □ ■)
-        // トラックボールの検出角度を45度右に回転
+        // 左から2番目(SW2) + 左から4番目(SW4)
+        // トラックボール座標を右に45度回転（時計回り）
 
         combo_layer4 {
-            bindings = <&mkp CPI_INC>;
-            key-positions = <1 3>;
+            bindings = <&mkp TB_ROT_CW>;
+            // overlay の matrix transform では SW4=0, SW3=1, SW2=2, SW1=3
+            // 左から2番目(SW2) + 左から4番目(SW4) は <2 0>
+            key-positions = <2 0>;
             timeout-ms = <50>;
         };
 
