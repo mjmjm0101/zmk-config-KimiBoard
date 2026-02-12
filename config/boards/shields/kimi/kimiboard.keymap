@@ -9,6 +9,19 @@
 };
 
 / {
+    behaviors {
+        tb_rot_ccw: tb_rot_ccw {
+            compatible = "kimiboard,behavior-trackball-rotate";
+            #binding-cells = <0>;
+        };
+
+        tb_rot_cw: tb_rot_cw {
+            compatible = "kimiboard,behavior-trackball-rotate";
+            #binding-cells = <0>;
+            clockwise;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
@@ -21,8 +34,8 @@
 
         scroll_layer {
             bindings = <
-                // 左から: 透過 / 透過 / 回転（リスナーで処理） / 回転（リスナーで処理）
-                &trans          &trans      &none            &none
+                // 左から: 透過 / 透過 / 反時計回り45° / 時計回り45°（カスタムビヘイビア）
+                &trans          &trans      &tb_rot_ccw      &tb_rot_cw
             >;
         };
     };
