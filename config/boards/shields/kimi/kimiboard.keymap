@@ -11,24 +11,13 @@
 
 
 / {
-    behaviors {
-        mb3_scroll: mb3_scroll {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <0>;
-            flavor = "tap-preferred";
-            tapping-term-ms = <200>;
-            quick-tap-ms = <150>;
-            bindings = <&mo 3 &mkp MB3>;
-        };
-    };
-
     keymap {
         compatible = "zmk,keymap";
 
         default_layer {
             bindings = <
                 // row0左から右へ（一番左のキーはリセットボタン）
-                &bt BT_NXT  &mb3_scroll  &mkp LCLK  &mkp RCLK
+                &bt BT_NXT  &lt 3 MB3  &mkp LCLK  &mkp RCLK
             >;
 	};
 
