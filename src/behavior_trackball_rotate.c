@@ -8,7 +8,7 @@
 #define DT_DRV_COMPAT kimiboard_behavior_trackball_rotate
 
 #ifndef DEVICE_API
-#define DEVICE_API(_class, _name) const struct zmk_behavior_driver_api _name
+#define DEVICE_API(_class, _name) const struct behavior_driver_api _name
 #endif
 
 struct behavior_trackball_rotate_config {
