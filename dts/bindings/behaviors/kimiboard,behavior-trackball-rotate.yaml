@@ -1,0 +1,10 @@
+description: KimiBoard trackball rotation behavior
+
+compatible: "kimiboard,behavior-trackball-rotate"
+
+include: zero_param.yaml
+
+properties:
+  clockwise:
+    type: boolean
+    description: Rotate clockwise by 45 degrees when pressed.
