@@ -9,61 +9,34 @@
     scroll-layers = <1>;
 };
 
-
 / {
     keymap {
         compatible = "zmk,keymap";
 
         default_layer {
             bindings = <
-                // row0左から右へ（一番左のキーはリセットボタン）
+                // 左から: BT切り替え / ホイールクリック(ホールドでLayer1) / 左クリック / 右クリック
                 &bt BT_NXT  &lt 1 MB3  &mkp LCLK  &mkp RCLK
             >;
-	};
+        };
 
-    scroll_layer {
+        scroll_layer {
             bindings = <
-                &trans  &trans  &trans  &trans
-        >;
-    };
-    
-
-
+                // 左から: BT切り替え(&transで透過) / 透過 / 45°左回転 / 45°右回転
+                &trans      &trans      &mkp TB_ROT_CCW  &mkp TB_ROT_CW
+            >;
+        };
     };
 
     combos {
         compatible = "zmk,combos";
 
-        // Key1 + 2 = (□ - ■ ■ □)
-        // トラックボール座標を左に45度回転（反時計回り）
-
-        combo_layer1 {
-            bindings = <&mkp TB_ROT_CCW>;
-            key-positions = <2 1>;
-            timeout-ms = <50>;
-        };
-
-        // 左から2番目(SW2) + 左から4番目(SW4)
-        // トラックボール座標を右に45度回転（時計回り）
-
-        combo_layer4 {
-            bindings = <&mkp TB_ROT_CW>;
-            // overlay の matrix transform では SW4=0, SW3=1, SW2=2, SW1=3
-            // 左から2番目(SW2) + 左から4番目(SW4) は <2 0>
-            key-positions = <2 0>;
-            timeout-ms = <50>;
-        };
-
-		// Key1 + 3 = (■ -  □ □　■)
-			// 現在の接続先のBT接続情報を消去
-
-        combo_layer7 {
+        // 左端+右端の同時押しで現在のBT接続先情報を削除
+        combo_bt_clear {
             bindings = <&bt BT_CLR>;
             key-positions = <0 3>;
             timeout-ms = <50>;
         };
-
-
     };
 
 };
