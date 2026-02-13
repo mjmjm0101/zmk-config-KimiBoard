@@ -5,5 +5,6 @@ zephyr_library_sources(
     src/trackball_rotation.c
     src/behavior_trackball_rotate.c
     src/trackball_rotation_listener.c
+    src/trackball_rotation_pointer_listener.c
 )
 zephyr_library_include_directories(include)
