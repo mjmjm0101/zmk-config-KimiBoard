@@ -1,57 +1,12 @@
-#include <zephyr/device.h>
-#include <zephyr/kernel.h>
+// Event listener implementation for behavior trackball rotate
 
-#include <zmk/behavior.h>
+#include <zephyr.h>
 
-#include <kimiboard/trackball_rotation.h>
+// Define your event listener functions here
 
-#define DT_DRV_COMPAT kimiboard_behavior_trackball_rotate
-
-struct behavior_trackball_rotate_config {
-    bool clockwise;
-};
-
-static int on_binding_pressed(struct zmk_behavior_binding *binding,
-                              struct zmk_behavior_binding_event event) {
-    ARG_UNUSED(binding);
-    ARG_UNUSED(event);
-
-    const struct device *dev = zmk_behavior_get_binding_device(binding);
-    if (dev == NULL) {
-        return ZMK_BEHAVIOR_OPAQUE;
-    }
-
-    const struct behavior_trackball_rotate_config *config = dev->config;
-
-    if (config->clockwise) {
-        rotate_right_45();
-    } else {
-        rotate_left_45();
-    }
-
-    return ZMK_BEHAVIOR_OPAQUE;
+void on_trackball_rotate(float rotation)
+{
+    // Handle trackball rotation events
 }
 
-static int on_binding_released(struct zmk_behavior_binding *binding,
-                               struct zmk_behavior_binding_event event) {
-    ARG_UNUSED(binding);
-    ARG_UNUSED(event);
-
-    return ZMK_BEHAVIOR_OPAQUE;
-}
-
-static const struct zmk_behavior_driver_api behavior_trackball_rotate_driver_api = {
-    .binding_pressed = on_binding_pressed,
-    .binding_released = on_binding_released,
-};
-
-#define TRACKBALL_ROTATE_INST(n)                                                                     \
-    static const struct behavior_trackball_rotate_config behavior_trackball_rotate_config_##n = {    \
-        .clockwise = DT_INST_PROP(n, clockwise),                                                     \
-    };                                                                                                \
-                                                                                                      \
-    BEHAVIOR_DT_INST_DEFINE(n, NULL, NULL, NULL, &behavior_trackball_rotate_config_##n,             \
-                            POST_KERNEL, CONFIG_KERNEL_INIT_PRIORITY_DEFAULT,                        \
-                            &behavior_trackball_rotate_driver_api);
-
-DT_INST_FOREACH_STATUS_OKAY_SEP(TRACKBALL_ROTATE_INST, (;))
+// You might want to add initialization and setup code here
