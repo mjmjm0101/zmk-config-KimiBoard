@@ -15,7 +15,7 @@
 #include <zephyr/input/input.h>
 #include <zmk/keymap.h>
 #include "pmw3610.h"
-
+#include <kimiboard/trackball_rotation.h>
 #include <zephyr/logging/log.h>
 LOG_MODULE_REGISTER(pmw3610, CONFIG_INPUT_LOG_LEVEL);
 
@@ -654,7 +654,13 @@ static int pmw3610_report_data(const struct device *dev) {
     if (IS_ENABLED(CONFIG_PMW3610_INVERT_Y)) {
         y = -y;
     }
-
+    // ★★★ ここに追加 ★★★
+    // トラックボール回転補正
+    int16_t rotated_x = 0, rotated_y = 0;
+    trackball_rotate_delta(x, y, &rotated_x, &rotated_y);
+    x = rotated_x;
+    y = rotated_y;
+    // ★★★ ここまで ★★★
 #ifdef CONFIG_PMW3610_SMART_ALGORITHM
     int16_t shutter =
         ((int16_t)(buf[PMW3610_SHUTTER_H_POS] & 0x01) << 8) + buf[PMW3610_SHUTTER_L_POS];
