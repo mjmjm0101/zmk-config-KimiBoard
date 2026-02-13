@@ -36,12 +36,7 @@ static int on_binding_released(const struct device *dev, struct zmk_behavior_bin
     return ZMK_BEHAVIOR_OPAQUE;
 }
 
-static const struct {
-    int (*binding_pressed)(const struct device *dev, struct zmk_behavior_binding *binding,
-                           struct zmk_behavior_binding_event event);
-    int (*binding_released)(const struct device *dev, struct zmk_behavior_binding *binding,
-                            struct zmk_behavior_binding_event event);
-} behavior_trackball_rotate_driver_api = {
+static const struct zmk_behavior_driver_api behavior_trackball_rotate_driver_api = {
     .binding_pressed = on_binding_pressed,
     .binding_released = on_binding_released,
 };
@@ -55,4 +50,4 @@ static const struct {
                             POST_KERNEL, CONFIG_KERNEL_INIT_PRIORITY_DEFAULT,                        \
                             &behavior_trackball_rotate_driver_api);
 
-DT_INST_FOREACH_STATUS_OKAY(TRACKBALL_ROTATE_INST)
+DT_INST_FOREACH_STATUS_OKAY_SEP(TRACKBALL_ROTATE_INST, (;))
