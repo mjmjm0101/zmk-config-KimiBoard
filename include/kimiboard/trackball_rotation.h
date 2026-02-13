@@ -4,6 +4,7 @@
 #include <stdint.h>
 
 #include <dt-bindings/zmk/pointing.h>
+#include <dt-bindings/zmk/kimiboard.h>
 
 #ifdef __cplusplus
 extern "C" {
