@@ -6,6 +6,17 @@
         zmk,physical-layout = &physical_layout0;
     };
 
+    // カスタムキーコード定義
+    tb_rot_ccw_kc: tb_rot_ccw_kc {
+        compatible = "zmk,keycode";
+        keycode = <0xF612>;
+    };
+
+    tb_rot_cw_kc: tb_rot_cw_kc {
+        compatible = "zmk,keycode";
+        keycode = <0xF611>;
+    };
+
     physical_layout0: physical_layout_0 {
         compatible = "zmk,physical-layout";
         display-name = "Default Layout";
