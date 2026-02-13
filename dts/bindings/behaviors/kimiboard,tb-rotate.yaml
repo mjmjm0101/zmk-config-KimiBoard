@@ -1,0 +1,11 @@
+description: KimiBoard trackball rotation behavior (local-only, no HID output)
+
+compatible: "kimiboard,tb-rotate"
+
+include: [behavior.yaml]
+
+properties:
+  cw:
+    type: int
+    required: true
+    description: "1 = rotate clockwise, 0 = rotate counter-clockwise"
