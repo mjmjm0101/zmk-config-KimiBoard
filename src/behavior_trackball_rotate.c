@@ -11,10 +11,15 @@ struct behavior_trackball_rotate_config {
     bool clockwise;
 };
 
-static int on_binding_pressed(const struct device *dev, struct zmk_behavior_binding_event event,
-                              uint32_t param) {
+static int on_binding_pressed(struct zmk_behavior_binding *binding,
+                              struct zmk_behavior_binding_event event) {
+    ARG_UNUSED(binding);
     ARG_UNUSED(event);
-    ARG_UNUSED(param);
+
+    const struct device *dev = zmk_behavior_get_binding_device(binding);
+    if (dev == NULL) {
+        return ZMK_BEHAVIOR_OPAQUE;
+    }
 
     const struct behavior_trackball_rotate_config *config = dev->config;
 
@@ -27,11 +32,10 @@ static int on_binding_pressed(const struct device *dev, struct zmk_behavior_bind
     return ZMK_BEHAVIOR_OPAQUE;
 }
 
-static int on_binding_released(const struct device *dev, struct zmk_behavior_binding_event event,
-                               uint32_t param) {
-    ARG_UNUSED(dev);
+static int on_binding_released(struct zmk_behavior_binding *binding,
+                               struct zmk_behavior_binding_event event) {
+    ARG_UNUSED(binding);
     ARG_UNUSED(event);
-    ARG_UNUSED(param);
 
     return ZMK_BEHAVIOR_OPAQUE;
 }
