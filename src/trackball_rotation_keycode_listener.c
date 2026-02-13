@@ -14,6 +14,8 @@ static int trackball_rotation_keycode_listener(const zmk_event_t *eh) {
         return ZMK_EV_EVENT_BUBBLE;
     }
 
+    LOG_INF("keycode=%u (0x%X) state=%d", ev->keycode, ev->keycode, ev->state);
+
     /* TB_ROT_* はローカル処理用。押下/解放どちらも送信しない */
     if (trackball_rotation_handle_keycode(ev->keycode)) {
         if (ev->state) {
