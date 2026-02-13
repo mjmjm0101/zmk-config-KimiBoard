@@ -15,11 +15,12 @@ static int trackball_rotation_keycode_listener(const zmk_event_t *eh) {
         return ZMK_EV_EVENT_BUBBLE;
     }
 
-    if (ev->state) {
-        if (trackball_rotation_handle_keycode(ev->keycode)) {
+    /* TB_ROT_* はローカル処理用。押下/解放どちらも送信しない */
+    if (trackball_rotation_handle_keycode(ev->keycode)) {
+        if (ev->state) {
             LOG_INF("Trackball rotation updated");
-            return ZMK_EV_EVENT_CAPTURED;
         }
+        return ZMK_EV_EVENT_CAPTURED;
     }
 
     return ZMK_EV_EVENT_BUBBLE;
