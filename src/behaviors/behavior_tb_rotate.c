@@ -1,8 +1,16 @@
+/*
+ * KimiBoard: trackball rotation behavior
+ * - Press: update local rotation state
+ * - Release: do nothing
+ * - No HID output (opaque)
+ */
+
+#define DT_DRV_COMPAT kimiboard_tb_rotate
+
 #include <zephyr/device.h>
 
+#include <drivers/behavior.h>
 #include <zmk/behavior.h>
-#include <zmk/behavior_binding.h>
-#include <zmk/behavior_driver.h>
 
 #include <kimiboard/trackball_rotation.h>
 
@@ -21,17 +29,15 @@ static int on_keymap_binding_pressed(struct zmk_behavior_binding *binding,
         rotate_left_45();
     }
 
-    /* 何も送らない（= o/n 等にならない） */
     return ZMK_BEHAVIOR_OPAQUE;
 }
 
 static int on_keymap_binding_released(struct zmk_behavior_binding *binding,
                                       struct zmk_behavior_binding_event event) {
-    /* リリースでも何も送らない */
     return ZMK_BEHAVIOR_OPAQUE;
 }
 
-static const struct behavior_driver_api behavior_tb_rotate_api = {
+static const struct behavior_driver_api behavior_tb_rotate_driver_api = {
     .binding_pressed = on_keymap_binding_pressed,
     .binding_released = on_keymap_binding_released,
 };
@@ -41,8 +47,7 @@ static const struct behavior_driver_api behavior_tb_rotate_api = {
         .cw = DT_INST_PROP(n, cw),                                                                 \
     };                                                                                             \
     BEHAVIOR_DT_INST_DEFINE(n, NULL, NULL, NULL, &behavior_tb_rotate_config_##n, POST_KERNEL,      \
-                            CONFIG_KERNEL_INIT_PRIORITY_DEFAULT, &behavior_tb_rotate_api);
+                            CONFIG_KERNEL_INIT_PRIORITY_DEFAULT,                                   \
+                            &behavior_tb_rotate_driver_api);
 
 DT_INST_FOREACH_STATUS_OKAY(TB_ROTATE_INST)
-
-DT_DRV_COMPAT kimiboard_tb_rotate
