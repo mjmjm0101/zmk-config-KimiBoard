@@ -9,6 +9,18 @@
 #include <stdint.h>
 #include <stdbool.h>
 
+/* TB_ROT_* を使う実装があるので、ここで定義(または定義元)を見えるようにする */
+#include <dt-bindings/zmk/pointing.h>
+#include <dt-bindings/zmk/kimiboard.h>
+
+/* 念のため: dt-bindings の解決が別物になってもビルドが落ちないように保険 */
+#ifndef TB_ROT_CW
+#define TB_ROT_CW 0xF611
+#endif
+#ifndef TB_ROT_CCW
+#define TB_ROT_CCW 0xF612
+#endif
+
 void rotate_left_45(void);
 void rotate_right_45(void);
 uint16_t trackball_rotation_angle_deg(void);
