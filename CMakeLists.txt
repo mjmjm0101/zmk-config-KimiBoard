@@ -3,7 +3,8 @@ cmake_minimum_required(VERSION 3.20.0)
 zephyr_library()
 zephyr_library_sources(
     src/trackball_rotation.c
-    src/trackball_rotation_keycode_listener.c
+    src/behaviors/behavior_tb_rotate.c
+    # src/trackball_rotation_keycode_listener.c
 )
 
 # 自分の公開ヘッダ

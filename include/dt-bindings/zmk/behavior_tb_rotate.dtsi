@@ -1,0 +1,15 @@
+/ {
+    behaviors {
+        tb_rot_ccw: tb_rot_ccw {
+            compatible = "kimiboard,tb-rotate";
+            status = "okay";
+            dir = <1>;
+        };
+
+        tb_rot_cw: tb_rot_cw {
+            compatible = "kimiboard,tb-rotate";
+            status = "okay";
+            dir = <-1>;
+        };
+    };
+};

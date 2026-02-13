@@ -1,21 +1,18 @@
 #include <dt-bindings/zmk/matrix_transform.h>
 #include <physical_layouts.dtsi>
 
+/* TB_ROT を “キーコード” ではなく “behavior” で処理するため追加 */
+#include <dt-bindings/zmk/behavior_tb_rotate.dtsi>
+
 / {
     chosen {
         zmk,physical-layout = &physical_layout0;
     };
 
-    // カスタムキーコード定義
-    tb_rot_ccw_kc: tb_rot_ccw_kc {
-        compatible = "zmk,keycode";
-        keycode = <0xF612>;
-    };
-
-    tb_rot_cw_kc: tb_rot_cw_kc {
-        compatible = "zmk,keycode";
-        keycode = <0xF611>;
-    };
+    /*
+     * 以前の「カスタムキーコード定義」は behavior 方式では不要。
+     * 残しても致命的ではないが、混乱の元なので削除。
+     */
 
     physical_layout0: physical_layout_0 {
         compatible = "zmk,physical-layout";
@@ -23,7 +20,7 @@
         kscan = <&kscan0>;
         transform = <&default_transform>;
 
-    keys = 
+        keys =
             //                     w    h    x     y   rot rx  ry
              <&key_physical_attrs  50   100    0   0   0   0   0>   // SW1(リセット用ボタン)
             , <&key_physical_attrs 100  100  120   0   0   0   0>   // SW2(左ボタン)
@@ -37,7 +34,7 @@
         rows = <4>;
         columns = <5>;
         map = <
-        RC(3,3) RC(2,2) RC(1,1) RC(0,0)    // SW4〜SW1(4はリセット用スイッチ)
+            RC(3,3) RC(2,2) RC(1,1) RC(0,0)    // SW4〜SW1(4はリセット用スイッチ)
         >;
     };
 
@@ -61,12 +58,11 @@
 };
 
 / {
-  trackball_listener {
-    status = "okay";
-    compatible = "zmk,input-listener";
-    device = <&trackball>;
-
-  };
+    trackball_listener {
+        status = "okay";
+        compatible = "zmk,input-listener";
+        device = <&trackball>;
+    };
 };
 
 &pinctrl {
