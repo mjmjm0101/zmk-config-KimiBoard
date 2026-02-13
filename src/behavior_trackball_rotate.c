@@ -1,57 +1,26 @@
-#include <zephyr/device.h>
-#include <zephyr/kernel.h>
+#include <zephyr/logging/log.h>
 
-#include <zmk/behavior.h>
+#include <zmk/event_manager.h>
+#include <zmk/events/keycode_state_changed.h>
 
 #include <kimiboard/trackball_rotation.h>
 
-#define DT_DRV_COMPAT kimiboard_behavior_trackball_rotate
+LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 
-struct behavior_trackball_rotate_config {
-    bool clockwise;
-};
+// キーマップで定義されたキーコードを監視するイベントリスナー
+static int trackball_rotate_listener(const zmk_event_t *eh) {
+    const struct zmk_keycode_state_changed *ev = as_zmk_keycode_state_changed(eh);
 
-static int on_binding_pressed(struct zmk_behavior_binding *binding,
-                              struct zmk_behavior_binding_event event) {
-    ARG_UNUSED(binding);
-    ARG_UNUSED(event);
-
-    const struct device *dev = zmk_behavior_get_binding_device(binding);
-    if (dev == NULL) {
-        return ZMK_BEHAVIOR_OPAQUE;
+    if (ev == NULL || !ev->state) {
+        return ZMK_EV_EVENT_BUBBLE;
     }
 
-    const struct behavior_trackball_rotate_config *config = dev->config;
-
-    if (config->clockwise) {
-        rotate_right_45();
-    } else {
-        rotate_left_45();
+    if (trackball_rotation_handle_keycode(ev->keycode)) {
+        return ZMK_EV_EVENT_CAPTURED;
     }
 
-    return ZMK_BEHAVIOR_OPAQUE;
+    return ZMK_EV_EVENT_BUBBLE;
 }
 
-static int on_binding_released(struct zmk_behavior_binding *binding,
-                               struct zmk_behavior_binding_event event) {
-    ARG_UNUSED(binding);
-    ARG_UNUSED(event);
-
-    return ZMK_BEHAVIOR_OPAQUE;
-}
-
-static const struct zmk_behavior_driver_api behavior_trackball_rotate_driver_api = {
-    .binding_pressed = on_binding_pressed,
-    .binding_released = on_binding_released,
-};
-
-#define TRACKBALL_ROTATE_INST(n)                                                                     \
-    static const struct behavior_trackball_rotate_config behavior_trackball_rotate_config_##n = {    \
-        .clockwise = DT_INST_PROP(n, clockwise),                                                     \
-    };                                                                                                \
-                                                                                                      \
-    BEHAVIOR_DT_INST_DEFINE(n, NULL, NULL, NULL, &behavior_trackball_rotate_config_##n,             \
-                            POST_KERNEL, CONFIG_KERNEL_INIT_PRIORITY_DEFAULT,                        \
-                            &behavior_trackball_rotate_driver_api);
-
-DT_INST_FOREACH_STATUS_OKAY_SEP(TRACKBALL_ROTATE_INST, (;))
+ZMK_LISTENER(trackball_rotate, trackball_rotate_listener);
+ZMK_SUBSCRIPTION(trackball_rotate, zmk_keycode_state_changed);
