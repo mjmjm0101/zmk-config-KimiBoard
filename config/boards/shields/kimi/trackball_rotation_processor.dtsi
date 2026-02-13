@@ -1,0 +1,5 @@
+/ {
+    trackball_rotation_processor: trackball_rotation_processor {
+        compatible = "zmk,input-processor-trackball-rotation";
+    };
+};
