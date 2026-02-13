@@ -2,7 +2,7 @@
 
 #include <zmk/event_manager.h>
 #include <zmk/events/keycode_state_changed.h>
-#include <zmk/events/pointer_move.h>
+#include <zmk/events/pointer_changed.h>
 
 #include <kimiboard/trackball_rotation.h>
 
@@ -27,17 +27,18 @@ static int trackball_rotation_keycode_listener(const zmk_event_t *eh) {
 }
 
 static int trackball_rotation_pointer_listener(const zmk_event_t *eh) {
-    struct zmk_pointer_move_event *ev = as_zmk_pointer_move_event(eh);
+    struct zmk_pointer_changed *ev = as_zmk_pointer_changed(eh);
 
     if (ev == NULL) {
         return ZMK_EV_EVENT_BUBBLE;
     }
 
+    // ポインタレポートのX, Y を回転補正
     int16_t rotated_x = 0, rotated_y = 0;
-    trackball_rotate_delta(ev->dx, ev->dy, &rotated_x, &rotated_y);
+    trackball_rotate_delta(ev->pointer_report.x, ev->pointer_report.y, &rotated_x, &rotated_y);
     
-    ev->dx = rotated_x;
-    ev->dy = rotated_y;
+    ev->pointer_report.x = rotated_x;
+    ev->pointer_report.y = rotated_y;
     
     return ZMK_EV_EVENT_BUBBLE;
 }
@@ -46,4 +47,4 @@ ZMK_LISTENER(trackball_rotation_keycode, trackball_rotation_keycode_listener);
 ZMK_SUBSCRIPTION(trackball_rotation_keycode, zmk_keycode_state_changed);
 
 ZMK_LISTENER(trackball_rotation_pointer, trackball_rotation_pointer_listener);
-ZMK_SUBSCRIPTION(trackball_rotation_pointer, zmk_pointer_move_event);
+ZMK_SUBSCRIPTION(trackball_rotation_pointer, zmk_pointer_changed);
