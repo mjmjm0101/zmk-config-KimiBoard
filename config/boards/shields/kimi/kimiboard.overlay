@@ -1,18 +1,13 @@
 #include <dt-bindings/zmk/matrix_transform.h>
 #include <physical_layouts.dtsi>
 
-/* TB_ROT を “キーコード” ではなく “behavior” で処理するため追加 */
+/* 回転を behavior で実装するため追加 */
 #include <dt-bindings/zmk/behavior_tb_rotate.dtsi>
 
 / {
     chosen {
         zmk,physical-layout = &physical_layout0;
     };
-
-    /*
-     * 以前の「カスタムキーコード定義」は behavior 方式では不要。
-     * 残しても致命的ではないが、混乱の元なので削除。
-     */
 
     physical_layout0: physical_layout_0 {
         compatible = "zmk,physical-layout";
