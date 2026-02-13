@@ -2,13 +2,10 @@ description: KimiBoard trackball rotation behavior (local-only, no HID output)
 
 compatible: "kimiboard,tb-rotate"
 
-# behavior.yaml が無い環境向けに include を使わない
-properties:
-  "#binding-cells":
-    type: int
-    required: true
-    const: 0
+# ノード側に #binding-cells を要求しない。binding 側でセル数を宣言するだけ。
+"#binding-cells": 0
 
+properties:
   cw:
     type: int
     required: true
