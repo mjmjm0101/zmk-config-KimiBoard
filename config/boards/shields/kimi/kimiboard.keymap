@@ -11,15 +11,13 @@
 / {
     behaviors {
         tb_rot_ccw: tb_rot_ccw {
-            compatible = "zmk,behavior-key-press";
+            compatible = "zmk,behavior-none";
             #binding-cells = <0>;
-            bindings = <&kp TB_ROT_CCW>;
         };
 
         tb_rot_cw: tb_rot_cw {
-            compatible = "zmk,behavior-key-press";
+            compatible = "zmk,behavior-none";
             #binding-cells = <0>;
-            bindings = <&kp TB_ROT_CW>;
         };
     };
 
