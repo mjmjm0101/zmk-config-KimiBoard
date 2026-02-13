@@ -11,12 +11,12 @@ LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 static int trackball_rotate_listener(const zmk_event_t *eh) {
     const struct zmk_keycode_state_changed *ev = as_zmk_keycode_state_changed(eh);
 
-    // キープレス時のみ処理（キーリリース時は無視）
+    // キープレス時のみ処理
     if (ev == NULL || !ev->state) {
         return ZMK_EV_EVENT_BUBBLE;
     }
 
-    // キーコードがトラックボール回転��マンドか確認
+    // キーコードがトラックボール回転コマンドか確認
     if (trackball_rotation_handle_keycode(ev->keycode)) {
         // イベント消費（他のリスナーに伝わらない）
         return ZMK_EV_EVENT_CAPTURED;
