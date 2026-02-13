@@ -3,12 +3,14 @@
         tb_rot_ccw: tb_rot_ccw {
             compatible = "kimiboard,tb-rotate";
             status = "okay";
+            #binding-cells = <0>;
             cw = <0>; /* 0: CCW */
         };
 
         tb_rot_cw: tb_rot_cw {
             compatible = "kimiboard,tb-rotate";
             status = "okay";
+            #binding-cells = <0>;
             cw = <1>; /* 1: CW */
         };
     };
