@@ -3,38 +3,25 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/mouse.h>
 #include <behaviors/rgbled_widget.dtsi>
+#include <dt-bindings/zmk/kimiboard.h>
 
 &trackball {
     scroll-layers = <1>;
 };
 
 / {
-    behaviors {
-        tb_rot_ccw: tb_rot_ccw {
-            compatible = "zmk,behavior-none";
-            #binding-cells = <0>;
-        };
-
-        tb_rot_cw: tb_rot_cw {
-            compatible = "zmk,behavior-none";
-            #binding-cells = <0>;
-        };
-    };
-
     keymap {
         compatible = "zmk,keymap";
 
         default_layer {
             bindings = <
-                // 左から: BT切り替え / ホイールクリック(ホールドでLayer1) / 左クリック / 右クリック
                 &bt BT_NXT  &lt 1 MB3  &mkp LCLK  &mkp RCLK
             >;
         };
 
         scroll_layer {
             bindings = <
-                // 左から: 透過 / 透過 / 反時計回り45° / 時計回り45°
-                &trans          &trans      &tb_rot_ccw      &tb_rot_cw
+                &trans          &trans      &kp TB_ROT_CCW      &kp TB_ROT_CW
             >;
         };
     };
@@ -42,7 +29,6 @@
     combos {
         compatible = "zmk,combos";
 
-        // 左端+右端の同時押しで現在のBT接続先情報を削除
         combo_bt_clear {
             bindings = <&bt BT_CLR>;
             key-positions = <0 3>;
