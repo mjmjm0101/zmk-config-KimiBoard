@@ -2,8 +2,6 @@ manifest:
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
-    - name: sirocominfo
-      url-base: https://github.com/sirocominfo
     - name: caksoylar
       url-base: https://github.com/caksoylar
   projects:
@@ -12,8 +10,8 @@ manifest:
       revision: v0.3
       import: app/west.yml
     - name: zmk-pmw3610-driver
-      remote: sirocominfo
-      revision: main
+      path: modules/zmk-pmw3610-driver
+      file: zephyr/module.yml
     - name: zmk-rgbled-widget
       remote: caksoylar
       revision: main
