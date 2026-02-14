@@ -1,7 +1,4 @@
 #ifndef DT_BINDINGS_ZMK_KIMIBOARD_H_
 #define DT_BINDINGS_ZMK_KIMIBOARD_H_
 
-#define TB_ROT_CCW 0xF612
-#define TB_ROT_CW  0xF611
-
 #endif
