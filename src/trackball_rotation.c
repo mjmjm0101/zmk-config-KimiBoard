@@ -57,16 +57,3 @@ void trackball_rotate_delta(int16_t dx, int16_t dy, int16_t *out_dx, int16_t *ou
         *out_dy = clamp_i32_to_i16(rotated_y);
     }
 }
-
-bool trackball_rotation_handle_keycode(uint32_t keycode) {
-    switch (keycode) {
-    case TB_ROT_CCW:
-        rotate_left_45();
-        return true;
-    case TB_ROT_CW:
-        rotate_right_45();
-        return true;
-    default:
-        return false;
-    }
-}
